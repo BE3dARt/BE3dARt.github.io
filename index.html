@@ -1,7 +1,19 @@
-<html>
-   <head>
-   <body>
-      <form name="calculator">
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>BE3dARt</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="BE3dARt">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+<form name="calculator">
          <table>
             <tr>
                <td colspan="4">
@@ -33,23 +45,18 @@
                <td><input type="button" class="operator" name="div" value="/" onclick="calculator.display.value += '/'"></td>
             </tr>
          </table>
-      </form>
-	  
-	  <button type="button" onclick="saveStaticDataToFile();">Click to Save</button>
-	  
-	  <script>
-		function myFunction() {
-		  document.getElementById("demo").innerHTML = "Hello World";
-		}
-		
-		function saveStaticDataToFile() {
-            var blob = new Blob(["Welcome to Websparrow.org."],
-                { type: "text/plain;charset=utf-8" });
-            saveAs(blob, "static.txt");
-        }
-}
-	</script>
+</form>
 
-   </body>
-   </head>
+<div id="drop-area">
+  <form class="my-form">
+    <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+    <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+    <label class="button" for="fileElem">Select some files</label>
+  </form>
+  <progress id="progress-bar" max=100 value=0></progress>
+  <div id="gallery" /></div>
+</div>
+	  
+  <script src="js/scripts.js"></script>
+</body>
 </html>
