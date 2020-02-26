@@ -14,62 +14,41 @@
 
 <body>
 
+    <input type="file" id="file">
+
     <div id="map"></div>
 
+    <p id="demo"></p>
+
     <script>
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', fileurl, true);
-        xhr.responseType = 'arraybuffer';
-        xhr.send();
-
-        xhr.onload = function(e) {
-            if (this.status == 200) {
-                elevBuffer = this.response;
-            } else {
-                // handle errors here
-            }
-        }
-
-        function getElevation(lat, lng, elevBuffer) {
-
-            // resolution of dataset, 1 arc second here
-            var resolution = 0.00027778;
-            var hgtGridSize = 3601;
-
-            return elevationFromlatlng(lat, lng);
-
-            function wgs84ToPixel(lat, lng) {
-                var y = Math.floor((1 - (lat % 1)) * (hgtGridSize));
-                var x = Math.ceil((lng % 1) * (hgtGridSize));
-                var px = (y * (hgtGridSize) * 2) + (x * 2);
-                return px;
-            }
-
-            function elevationFromlatlng(lat, lng) {
-                var elevation;
-                var pixel = wgs84ToPixel(lat, lng);
-
-                var g = new DataView(elevBuffer, pixel, 2);
-
-                elevation = g.getInt16(0, false);
-                return elevation;
-            }
-
-        }
+        var testus;
 
         var map = L.map('map').setView([47.486153, 8.206813], 15);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            'attribution': 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
-            'useCache': true
+        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
         }).addTo(map);
 
         var popup = L.popup();
 
         function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(map);
+
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var myObj = JSON.parse(this.responseText);
+                    testus = myObj.results[0].elevation;
+                    popup.setLatLng(e.latlng)
+                    popup.setContent("X: " + e.latlng.lat + " Y: " + e.latlng.lng + " Alt: " + testus)
+                    popup.openOn(map);
+                }
+            };
+
+            xmlhttp.open("GET", "https://api.opentopodata.org/v1/eudem25m?locations=" + e.latlng.lat + "," + e.latlng.lng, true);
+            xmlhttp.send();
+
         }
 
         map.on('click', onMapClick);
