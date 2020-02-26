@@ -1,84 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 
-<html lang="en">
 <head>
-  <meta charset="utf-8">
 
-  <title>BE3dARt</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="BE3dARt">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
 
-  <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
 <body>
 
-    <div id="page-wrapper">
-        
-         <div class="row">
-            <div class="column">
-                 <div>
-                <img src="img/warThunder_Icon.png" alt="War Thunder Icon" width="100" height="100" onclick="window.location.href='index.html'">
-                    
-            </div>
-                
-                <div>
-                    
-                    <img src="img/UAV_Icon.png" alt="UAV Icon" width="100" height="100" onclick="window.location.href='projectUAV.html'">
-                
-                </div>
-            
-                
-             </div>
-             
-             <div class="column">
-                 
-                 <h1 id="hello">UAV Waypoint Calculator</h1>
-        <div>Calculate the waypoints for your GPS based UAV!</div>
-        <a href="http://www.onlinewebfonts.com">Icon from oNline Web Fonts</a>
-                
-             </div>
-        </div>
+    <div id="map"></div>
 
-	</div>
-    
-  <script>	
-      
-      var fileInput = document.getElementById('fileInput');
-var fileDisplayArea = document.getElementById('fileDisplayArea');
-var hello = document.getElementById('hello');
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', fileurl, true);
+        xhr.responseType = 'arraybuffer';
+        xhr.send();
 
-hello.addEventListener('click', function () {
-    testus();
-});
-
-function testus() {
-    let silverlions = document.getElementById("silverlions").value;
-    let researchPoints = document.getElementById("researchPoints").value;
-    let premium = document.getElementById("premium").value;
-    fileDisplayArea.innerText = silverlions+researchPoints+premium;
-}
-
-window.onbeforeunload = function () {
-    return "";
-};
-
-window.onload = function() {
-
-    fileInput.addEventListener('change', function(e) {
-
-        var file = fileInput.files[0];
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            fileDisplayArea.innerText = reader.result;
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                elevBuffer = this.response;
+            } else {
+                // handle errors here
+            }
         }
-        reader.readAsText(file);	
-    });
-}
 
-  </script>
-    
+        function getElevation(lat, lng, elevBuffer) {
+
+            // resolution of dataset, 1 arc second here
+            var resolution = 0.00027778;
+            var hgtGridSize = 3601;
+
+            return elevationFromlatlng(lat, lng);
+
+            function wgs84ToPixel(lat, lng) {
+                var y = Math.floor((1 - (lat % 1)) * (hgtGridSize));
+                var x = Math.ceil((lng % 1) * (hgtGridSize));
+                var px = (y * (hgtGridSize) * 2) + (x * 2);
+                return px;
+            }
+
+            function elevationFromlatlng(lat, lng) {
+                var elevation;
+                var pixel = wgs84ToPixel(lat, lng);
+
+                var g = new DataView(elevBuffer, pixel, 2);
+
+                elevation = g.getInt16(0, false);
+                return elevation;
+            }
+
+        }
+
+        var map = L.map('map').setView([47.486153, 8.206813], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'attribution': 'Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+            'useCache': true
+        }).addTo(map);
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+
+    </script>
+
 </body>
+
 </html>
