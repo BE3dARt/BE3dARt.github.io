@@ -32,3 +32,11 @@ img {
   width: 100%;
   overflow-x: auto;
 }
+
+.row {
+  display: flex;
+}
+
+.column {
+  margin: 1em;
+}
