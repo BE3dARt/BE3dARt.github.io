@@ -108,25 +108,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-var xmlhttp = new XMLHttpRequest();
-
-            xmlhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-
-                    var myObj = JSON.parse(this.responseText);
-                    testus = myObj.results[0].elevation;
-                    popup.setLatLng(e.latlng)
-                    popup.setContent("X: " + e.latlng.lat + " Y: " + e.latlng.lng + " Alt: " + testus)
-                    popup.openOn(map);
-                }
-            };
-
-            xmlhttp.open("GET", "https://api.opentopodata.org/v1/eudem25m?locations=" + e.latlng.lat + "," + e.latlng.lng, true);
-            xmlhttp.send();
