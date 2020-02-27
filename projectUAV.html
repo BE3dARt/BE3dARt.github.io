@@ -5,11 +5,9 @@
 
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
-
     <link rel="stylesheet" href="css/styles.css">
+    
 
 </head>
 
@@ -20,89 +18,9 @@
     <div id="map"></div>
 
     <p id="demo"></p>
-
-    <script>
-        var testus;
-        var polylineArray = [
-            [0, 0],
-            [0, 0]
-        ];
-
-        var exportArray = [
-            [0, 0, 0],
-            [0, 0, 0]
-        ];
-
-        var map = L.map('map').setView([47.486153, 8.206813], 15);
-        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-        }).addTo(map);
-
-        var popup = L.popup();
-
-        var proxy = 'https://cors-anywhere.herokuapp.com/';
-
-        function addPointToExportArray(inputArray, latitude, longitude) {
-            inputArray[inputArray.length] = [latitude, longitude];
-            return inputArray;
-
-        };
-
-        function drawPolylineArray(latitude, longitude, altitude) {
-
-            var marker = L.marker([latitude, longitude]).addTo(map);
-            marker.bindPopup("<b>Altitude: " + altitude.toFixed(2) + "m</b><br>Latitude: " + latitude.toFixed(2) + " Longitude: " + longitude.toFixed(2)).openPopup();
-
-            if (polylineArray[1][0] != 0) {
-                polylineArray[0] = polylineArray[1];
-            }
-
-            polylineArray[1] = [latitude, longitude];
-
-            if (polylineArray[0][0] == 0 || polylineArray[1][0] == 0) {
-
-            } else {
-                var polyline = L.polyline(polylineArray, {
-                    color: 'green'
-                }).addTo(map);
-
-            }
-        }
-
-        function onMapClick(e) {
-            $.ajax({
-                method: 'GET',
-                url: 'http://localhost:3000',
-                dataType: 'jsonp', //change the datatype to 'jsonp' works in most cases
-                success: (res) => {
-                    console.log(res);
-                }
-            })
-
-            <!--    
-            var xmlhttp = new XMLHttpRequest();
-
-            xmlhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-
-                    var myObj = JSON.parse(this.responseText);
-                    testus = myObj.results[0].elevation;
-                    drawPolylineArray(e.latlng.lat, e.latlng.lng, testus);
-
-                }
-            };
-
-            xmlhttp.open("GET", "https://api.opentopodata.org/v1/eudem25m?locations=" + e.latlng.lat + "," + e.latlng.lng);
-            xmlhttp.send();
-            -->
-
-        }
-
-        map.on('click', onMapClick);
-
-    </script>
-
+    
+    <script type="text/javascript" src="js/scripts.js"></script>
+    
 </body>
 
 </html>
