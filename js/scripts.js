@@ -45,27 +45,35 @@
 
     }
 
-
-
-
+    function drawPolyline() {
+        
+        if (markerArray.length);
+        
+        
+    }
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Add Marker too map (automatically detect)
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var markerArray = [0];
-    var positionArray = [[0, 0, 0]];
+    var positionArray = [
+        [0], [0], [0]
+    ];
 
-    function addMarkerToMap(latitude, longitude) {
+    //In positionArray[2][1], the first digit represents x,y,z and the second one the marker. So if you want the 3rd marker to be 5m in altitude you would have to write positionArray[2][2] = 5;
+    function addMarkerToMap(latitude, longitude, altitude) {
+
         var counter = 0;
 
-        while (markerArray[counter] === undefined) {
-            
-            markerArray[counter] = 
-                
-                marker.setLatLng(position, {
-                    draggable: 'true'
-                });
+        while (markerArray[counter] != null && markerArray[counter] != 0) {
+
+            var tempPos = markerArray[counter].getLatLng();
+
+            positionArray[0][counter] = tempPos.lat;
+            positionArray[1][counter] = tempPos.lng;
+
+            markerArray[counter].setLatLng([positionArray[0][counter], positionArray[1][counter]]);
 
             counter += 1;
         }
@@ -73,19 +81,33 @@
         markerArray[counter] = L.marker([latitude, longitude], {
             draggable: 'true'
         }).addTo(map);
-        
-        positionArray[counter][0] = latitude;
-        positionArray[counter][1] = longitude;
-        positionArray[counter][2] = 0;
-        
-        //markerArray[counter].bindPopup("<br>Latitude: " + latitude.toFixed(2) + " Longitude: " + longitude.toFixed(2)).openPopup();
+
+        positionArray[0][counter] = latitude;
+        positionArray[1][counter] = longitude;
+        positionArray[2][counter] = altitude;
+
+        markerArray[counter].bindPopup("Marker: " + (counter + 1) + "<br>Altitude: " + altitude).openPopup();
+    }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Update Array and PopUp when draged
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function update(latitude, longitude, altitude, markerNumber) {
+
+        positionArray[2][markerNumber] = altitude;
+
+        markerArray[markerNumber].setPopupContent("Marker: " + markerNumber + 1 + "<br>Altitude: " + altitude);
+
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Make a HTTP Request and return elevation
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var proxy = ['https://cors-anywhere.herokuapp.com/', 'https://api.allorigins.win/raw?url=', 'https://yacdn.org/proxy/'];
-    funtion getAltitude(latitude, longitude, inputProxy, arrayPos) {
+
+    function getAltitude(latitude, longitude, inputProxy, arrayPos, option, markerNumber) {
 
         if (arrayPos <= 2) {
             var xmlhttp = new XMLHttpRequest();
@@ -98,16 +120,24 @@
                 if (this.readyState == 4 && this.status == 200) {
 
                     var myObj = JSON.parse(this.responseText);
-                    var responseJSON = myObj.results[0].elevation;
-                    
-                    positionArray[counter][2] = responseJSON;
-                    
+                    var tempResponse = myObj.results[0].elevation;
+
+                    if (option == true) {
+                        update(latitude, longitude, tempResponse, markerNumber);
+                    } else {
+                        addMarkerToMap(latitude, longitude, tempResponse);
+                    }
+
                     //drawPolylineArray(latitude, longitude);
 
                 }
 
+
+
                 if (this.readyState == 4 && this.status != 200) {
-                    makeHTTPRequest(latitude, longitude, inputProxy, arrayPos + 1);
+
+                    getAltitude(latitude, longitude, inputProxy, (arrayPos + 1), option, markerNumber);
+
                 }
 
             };
@@ -121,13 +151,6 @@
     }
 
 
-
-
-
-
-
-
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Add Marker with Elevation and Polyline
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,28 +159,36 @@
         var latitude = e.latlng.lat;
         var longitude = e.latlng.lng;
 
-        addMarkerToMap(latitude, longitude);
+        getAltitude(latitude, longitude, proxy, 0, false, 9999);
 
-        /*
-        makeHTTPRequest(latitude, longitude, proxy, 0);
+    }
 
-        for (var i = 0; i < testArray.length; i++) {
-            var position;
+    function onMapMove(e) {
+        
+        alert("Hey: " + markerArray.length);
 
-            testArray[i].on('dragend', function (event) {
-                var marker = event.target;
-                position = marker.getLatLng();
-                marker.setLatLng(position, {
-                    draggable: 'true'
-                });
-                marker.bindPopup("<br>Latitude: " + position.lat.toFixed(2) + " Longitude: " + position.lng.toFixed(2)).openPopup();
+        var counter = 0;
 
-            });
+        while (markerArray[counter] != null && positionArray[0][0] != 0) {
 
-            map.addLayer(testArray[i]);
+            var tempPos = markerArray[counter].getLatLng();
+
+            if (positionArray[0][counter] > (tempPos.lat + 0.002) || positionArray[0][counter] < (tempPos.lat - 0.002)) {
+
+                //alert("Pos Array: " + positionArray[0][counter] + " temp: " + tempPos.lat);
+
+                positionArray[0][counter] = tempPos.lat;
+                positionArray[1][counter] = tempPos.lng;
+
+                getAltitude(tempPos.lat, tempPos.lng, proxy, 0, true, counter);
+
+            }
+
+            counter += 1;
         }
-        */
 
     }
 
     map.on('click', onMapClick);
+
+    map.on('mousemove', onMapMove);
