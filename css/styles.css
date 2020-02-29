@@ -1,3 +1,10 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
 html {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 100%;
@@ -35,10 +42,12 @@ img {
 
 .row {
     display: flex;
+    margin: 1vh;
 }
 
 .column {
-    margin: 1em;
+    margin: 0.2vh;
+    flex: 50%;
 }
 
 #mapid {
@@ -55,25 +64,56 @@ img {
 
 #map-wrapper {
     position: relative;
-
     width: 100%;
     bottom: 0%;
-    height: 98vh;
+    height: 100vh;
+    overflow: hidden;
 
 }
 
-#button-wrapper {
-    position: absolute;
-    bottom: 0;
-    bottom: 0;
-    height: 5vh;
+
+.buttons {
+    background-color: #e50027;
+    margin: 1vh;
+    min-height: 3vh;
     width: 100%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0.4vh;
     z-index: 1000;
 }
 
-.buttons {
-  background-color: darkseagreen;
-    margin: 1vh;
-    min-height: 3vh;
-    min-width: 15vh;
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.span9 {
+    position: relative;
 }
