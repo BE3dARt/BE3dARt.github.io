@@ -18,7 +18,13 @@
 
 <body>
 
+
     <div class="Page-Wrapper" id="page-wrapper">
+
+        <div class="header">
+            <div>BE3dARt's Soundboard</div>
+        </div>
+        
     </div>
 
 </body>
@@ -35,7 +41,7 @@
         [0, "Cyka Blyat", "cykablyat.mp3"],
         [0, "Message", "message.mp3"],
         [0, "Windows XP Error", "windowsxperror.mp3"],
-        [0, "Fart", "fart"],
+        [0, "Fart", "fart.mp3"],
         [0, "Fuck Me Harder", "fuckmeharder.mp3"],
         [0, "Wow", "wow.mp3"],
         [0, "Headshot", "headshot.mp3"],
@@ -71,10 +77,12 @@
 
         fileNameArray[arrayCounter][0] = document.createElement("BUTTON");
         fileNameArray[arrayCounter][0].id = arrayCounter.toString();
-        fileNameArray[arrayCounter][0].className = "buttons";
-        fileNameArray[arrayCounter][0].innerHTML = fileNameArray[arrayCounter][1];
+        fileNameArray[arrayCounter][0].className = "buttons"; 
         
-        
+        var para = document.createElement("P"); 
+        para.innerText = fileNameArray[arrayCounter][1];
+
+
         fileNameArray[arrayCounter][0].addEventListener('mouseover', function() {
 
             this.style.animation = "";
@@ -88,9 +96,10 @@
             var url = "snd/" + fileNameArray[tempArrayCounter][2];
             new Audio(url).play();
         });
-        
-        
+
+
         document.getElementById("page-wrapper").appendChild(fileNameArray[arrayCounter][0]);
+        fileNameArray[arrayCounter][0].appendChild(para);
 
         arrayCounter += 1;
 
