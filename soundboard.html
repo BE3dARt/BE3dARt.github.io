@@ -18,35 +18,85 @@
 
 <body>
 
-    <button class="buttons" id="button1"><i class="fa fa-exchange"></i> Change</button>
-
-    <button onclick="myFunction()">Try it</button>
+    <div class="Page-Wrapper" id="page-wrapper">
+    </div>
 
 </body>
 
 <script>
-    soundCounter = 0;
+    // <button class="buttons" id="button1"><i class="fa fa-exchange"></i> Change</button>
 
-    $.getJSON('snd/', data => {
-        console.log(data); //["doc1.jpg", "doc2.jpg", "doc3.jpg"] 
-    });
+    var fileNameArray = [
+        [0, "Airhorn", "airhorn.mp3"],
+        [0, "2 Girls 1 Cup Intro", "2girls1cup.mp3"],
+        [0, "Boring", "boring.mp3"],
+        [0, "Bruh", "bruh.mp3"],
+        [0, "Campana", "campana.mp3"],
+        [0, "Cyka Blyat", "cykablyat.mp3"],
+        [0, "Message", "message.mp3"],
+        [0, "Windows XP Error", "windowsxperror.mp3"],
+        [0, "Fart", "fart"],
+        [0, "Fuck Me Harder", "fuckmeharder.mp3"],
+        [0, "Wow", "wow.mp3"],
+        [0, "Headshot", "headshot.mp3"],
+        [0, "Nein x 88", "neinneinnein.mp3"],
+        [0, "I Like Turtles", "iliketurtles.mp3"],
+        [0, "Kann Es Sein, Dass Du Dumm Bist?", "kannesseindummbist.mp3"],
+        [0, "LOL", "lol.mp3"],
+        [0, "Fuck You", "fuckyou.mp3"],
+        [0, "Can't Touch This", "canttouchthis.mp3"],
+        [0, "Metal Gear Solid", "metalgearsolid.mp3"],
+        [0, "Noice", "noice.mp3"],
+        [0, "OHHHHHHHH", "ohhhhh.mp3"],
+        [0, "Sad Trombone", "sadtrombone.mp3"],
+        [0, "Nemesis", "nemesis.mp3"],
+        [0, "Pew Pew", "piupiu.mp3"],
+        [0, "Trollolol", "trollolol.mp3"],
+        [0, "Tokyo Drift", "tokiodrift.mp3"],
+        [0, "Victory", "victory.mp3"],
+        [0, "Wah Wah", "wahwah.mp3"],
+        [0, "Wait What", "waitwhat.mp3"]
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        myFunction();
+    }, false);
+
+
+    var arrayCounter = 0;
 
     function myFunction() {
 
-        var btn = document.createElement("BUTTON");
-        btn.id = soundCounter.toString();
-        btn.className = "buttons";
-        btn.innerHTML = "CLICK ME";
-        btn.addEventListener('click', function() {
+        var tempArrayCounter = arrayCounter;
 
-            var url = 'snd/airhorn.mp3';
-            var filename = url.substring(url.lastIndexOf('/') + 1);
+        fileNameArray[arrayCounter][0] = document.createElement("BUTTON");
+        fileNameArray[arrayCounter][0].id = arrayCounter.toString();
+        fileNameArray[arrayCounter][0].className = "buttons";
+        fileNameArray[arrayCounter][0].innerHTML = fileNameArray[arrayCounter][1];
+        
+        
+        fileNameArray[arrayCounter][0].addEventListener('mouseover', function() {
 
-            new Audio('snd/airhorn.mp3').play();
+            this.style.animation = "";
+
         });
-        document.body.appendChild(btn);
 
-        soundCounter += 1;
+        fileNameArray[arrayCounter][0].addEventListener('click', function() {
+
+            this.style.animation = "mymove 1s";
+
+            var url = "snd/" + fileNameArray[tempArrayCounter][2];
+            new Audio(url).play();
+        });
+        
+        
+        document.getElementById("page-wrapper").appendChild(fileNameArray[arrayCounter][0]);
+
+        arrayCounter += 1;
+
+        if (arrayCounter < fileNameArray.length) {
+            myFunction();
+        }
     }
 
 </script>
