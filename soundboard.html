@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>BE3dARt</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="BE3dARt">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+
+</head>
+
+<body>
+
+    <button class="buttons" id="button1"><i class="fa fa-exchange"></i> Change</button>
+
+    <button onclick="myFunction()">Try it</button>
+
+</body>
+
+<script>
+    soundCounter = 0;
+
+    $.getJSON('snd/', data => {
+        console.log(data); //["doc1.jpg", "doc2.jpg", "doc3.jpg"] 
+    });
+
+    function myFunction() {
+    function myFunction() {
+
+        alert(files);
+
+        var btn = document.createElement("BUTTON");
+        btn.id = soundCounter.toString();
+        btn.className = "buttons";
+        btn.innerHTML = "CLICK ME";
+        btn.addEventListener('click', function() {
+
+            var url = 'snd/airhorn.mp3';
+            var filename = url.substring(url.lastIndexOf('/') + 1);
+
+            new Audio('snd/airhorn.mp3').play();
+        });
+        document.body.appendChild(btn);
+
+        soundCounter += 1;
+    }
+
+</script>
+
+<script type="text/javascript" src="js/scripts.js"></script>
+
+</html>
