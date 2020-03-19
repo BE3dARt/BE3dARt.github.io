@@ -49,3 +49,8 @@ img {
     margin: 0.2vh;
     flex: 50%;
 }
+
+.container{width:80%;min-height: 400px;margin:0 auto;overflow: hidden;}
+.font-c-light{color:#aaa;}
+.header, .footer{width:100%;text-align:center;}
+a{text-decoration:none;color:rgba(230,0,0,1)}
