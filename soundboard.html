@@ -24,7 +24,7 @@
         <div class="header">
             <div>BE3dARt's Soundboard</div>
         </div>
-        
+
     </div>
 
 </body>
@@ -33,35 +33,79 @@
     // <button class="buttons" id="button1"><i class="fa fa-exchange"></i> Change</button>
 
     var fileNameArray = [
-        [0, "Airhorn", "airhorn.mp3"],
-        [0, "2 Girls 1 Cup Intro", "2girls1cup.mp3"],
-        [0, "Boring", "boring.mp3"],
-        [0, "Bruh", "bruh.mp3"],
-        [0, "Campana", "campana.mp3"],
-        [0, "Cyka Blyat", "cykablyat.mp3"],
-        [0, "Message", "message.mp3"],
-        [0, "Windows XP Error", "windowsxperror.mp3"],
-        [0, "Fart", "fart.mp3"],
-        [0, "Fuck Me Harder", "fuckmeharder.mp3"],
-        [0, "Wow", "wow.mp3"],
-        [0, "Headshot", "headshot.mp3"],
-        [0, "Nein x 88", "neinneinnein.mp3"],
-        [0, "I Like Turtles", "iliketurtles.mp3"],
-        [0, "Kann Es Sein, Dass Du Dumm Bist?", "kannesseindummbist.mp3"],
-        [0, "LOL", "lol.mp3"],
-        [0, "Fuck You", "fuckyou.mp3"],
-        [0, "Can't Touch This", "canttouchthis.mp3"],
-        [0, "Metal Gear Solid", "metalgearsolid.mp3"],
-        [0, "Noice", "noice.mp3"],
-        [0, "OHHHHHHHH", "ohhhhh.mp3"],
-        [0, "Sad Trombone", "sadtrombone.mp3"],
-        [0, "Nemesis", "nemesis.mp3"],
-        [0, "Pew Pew", "piupiu.mp3"],
-        [0, "Trollolol", "trollolol.mp3"],
-        [0, "Tokyo Drift", "tokiodrift.mp3"],
-        [0, "Victory", "victory.mp3"],
-        [0, "Wah Wah", "wahwah.mp3"],
-        [0, "Wait What", "waitwhat.mp3"]
+        [0, "Airhorn", "airhorn.mp3", 0, 0],
+        [0, "2 Girls 1 Cup Intro", "2girls1cup.mp3", 0, 0],
+        [0, "Boring", "boring.mp3", 0, 0],
+        [0, "Bruh", "bruh.mp3", 0, 0],
+        [0, "Campana", "campana.mp3", 0, 0],
+        [0, "Cyka Blyat", "cykablyat.mp3", 0, 0],
+        [0, "Message", "message.mp3", 0, 0],
+        [0, "Windows XP Error", "windowsxperror.mp3", 0, 0],
+        [0, "Fart", "fart.mp3", 0, 0],
+        [0, "Fuck Me Harder", "fuckmeharder.mp3", 0, 0],
+        [0, "Wow", "wow.mp3", 0, 0],
+        [0, "Headshot", "headshot.mp3", 0, 0],
+        [0, "Nein x 88", "neinneinnein.mp3", 0, 0],
+        [0, "I Like Turtles", "iliketurtles.mp3", 0, 0],
+        [0, "Kann Es Sein, Dass Du Dumm Bist?", "kannesseindummbist.mp3", 0, 0],
+        [0, "LOL", "lol.mp3", 0, 0],
+        [0, "Fuck You", "fuckyou.mp3", 0, 0],
+        [0, "Can't Touch This", "canttouchthis.mp3", 0, 0],
+        [0, "Metal Gear Solid", "metalgearsolid.mp3", 0, 0],
+        [0, "Noice", "noice.mp3", 0, 0],
+        [0, "Sad Trombone", "sadtrombone.mp3", 0, 0],
+        [0, "Nemesis", "nemesis.mp3", 0, 0],
+        [0, "Pew Pew", "piupiu.mp3", 0, 0],
+        [0, "Trollolol", "trollolol.mp3", 0, 0],
+        [0, "Tokyo Drift", "tokiodrift.mp3", 0, 0],
+        [0, "Victory", "victory.mp3", 0, 0],
+        [0, "Wah Wah", "wahwah.mp3", 0, 0],
+        [0, "Wait What", "waitwhat.mp3", 0, 0],
+        [0, "Crickets Silence", "crickets.mp3", 0, 0],
+        [0, "Punch", "punch.mp3", 0, 0],
+        [0, "Mission Failed", "missionfailed.mp3", 0, 0],
+        [0, "Fatality", "fatality.mp3", 0, 0],
+        [0, "Ba Dum Tss", "badumtss.mp3", 0, 0],
+        [0, "Phone Vibrating", "phonevibrating.mp3", 0, 0],
+        [0, "Applause", "applause.mp3", 0, 0],
+        [0, "Boom Headshot", "boomheadshot.mp3", 0, 0],
+        [0, "Yoink", "bubby.mp3", 0, 0],
+        [0, "Bye, Have a Great Time", "byehaveagreattime.mp3", 0, 0],
+        [0, "Damn", "damnfriday.mp3", 0, 0],
+        [0, "DUN DUN DUUUNNNN", "dundundun.mp3", 0, 0],
+        [0, "Ezzzyy", "ez.mp3", 0, 0],
+        [0, "Fire In The Hole", "fireinthehole.mp3", 0, 0],
+        [0, "FBI, OPEN UP", "fpiopenup.mp3", 0, 0],
+        [0, "Gotcha Biatch", "gotchabitch.mp3", 0, 0],
+        [0, "Ha GAYYY", "hegay.mp3", 0, 0],
+        [0, "Hey, Wha Happen", "heywhathappened.mp3", 0, 0],
+        [0, "Hold Up, Wait a Minute", "holdupwaitaminute.mp3", 0, 0],
+        [0, "HotHotHotHot", "hothothot.mp3", 0, 0],
+        [0, "👁⃤ Illuminati Confirmed👁⃤", "illuminati.mp3", 0, 0],
+        [0, "Do It, JUST DO IT", "justdoit.mp3", 0, 0],
+        [0, "Kaching", "kaching.mp3", 0, 0],
+        [0, "Leeroyyy Jenkiens", "leeroyjenkiens.mp3", 0, 0],
+        [0, "No God, NOGODPLEASENO", "nogodpleaseno.mp3", 0, 0],
+        [0, "*Crowd Of Dudes Going Wild*", "ohhhhhh.mp3", 0, 0],
+        [0, "Oh My Gwad", "ohmygodafrica.mp3", 0, 0],
+        [0, "Ou Yes Daddy", "ohyesdaddy.mp3", 0, 0],
+        [0, "Ogge", "okay.mp3", 0, 0],
+        [0, "Run DUDUDUUU", "run.mp3", 0, 0],
+        [0, "Seriously Wtf Are You Doing?", "seriouselywhatthefuck.mp3", 0, 0],
+        [0, "sIKE", "sike.mp3", 0, 0],
+        [0, "Gentlemen Clapping", "slowclap.mp3", 0, 0],
+        [0, "Smoke Weed Everyday", "snikeweedeveryday.mp3", 0, 0],
+        [0, "Stop It. Get Some Help.", "stopit.mp3", 0, 0],
+        [0, "Surprise Mothafucker", "surprisemotherfucker.mp3", 0, 0],
+        [0, "Tha Ting Goes Skrraaa *pakakakaka*", "thetinggoesskrrra.mp3", 0, 0],
+        [0, "It Was At This Moment He Knew...", "thismomenthefuckedup.mp3", 0, 0],
+        [0, "GTA Wasted", "wasted.mp3", 0, 0],
+        [0, "WEEEEEE", "wee.mp3", 0, 0],
+        [0, "Who ahAre You?", "whoareyou.mp3", 0, 0],
+        [0, "Why Aru Running? 2x", "whyareyourunning.mp3", 0, 0],
+        [0, "Why You Cheff To Be Mad", "whyyouhefftobemad.mp3", 0, 0],
+        [0, "YEET", "yeet.mp3", 0, 0]
+        
     ];
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -74,38 +118,49 @@
     function myFunction() {
 
         var tempArrayCounter = arrayCounter;
+        
+        var url = "snd/" + fileNameArray[tempArrayCounter][2];
+        
+        var au = document.createElement('audio');
 
         fileNameArray[arrayCounter][0] = document.createElement("BUTTON");
         fileNameArray[arrayCounter][0].id = arrayCounter.toString();
-        fileNameArray[arrayCounter][0].className = "buttons"; 
-        
-        var para = document.createElement("P"); 
-        para.innerText = fileNameArray[arrayCounter][1];
+        fileNameArray[arrayCounter][0].className = "buttons";
+
+        au.src = url;
+
+        au.addEventListener('loadedmetadata', function() {
+            var duration = Math.round(au.duration * 10) / 10;
+
+            var para = document.createElement("P");
+            var textus = fileNameArray[arrayCounter][1] + "\n\n" + duration + "s";
+            para.innerText = textus;
 
 
-        fileNameArray[arrayCounter][0].addEventListener('mouseover', function() {
+            fileNameArray[arrayCounter][0].addEventListener('mouseover', function() {
 
-            this.style.animation = "";
+                this.style.animation = "";
 
-        });
+            });
 
-        fileNameArray[arrayCounter][0].addEventListener('click', function() {
+            fileNameArray[arrayCounter][0].addEventListener('click', function() {
 
-            this.style.animation = "mymove 1s";
+                this.style.animation = "mymove 1s";
 
-            var url = "snd/" + fileNameArray[tempArrayCounter][2];
-            new Audio(url).play();
-        });
+                var urlTemp = url;
+                new Audio(urlTemp).play();
+            });
 
 
-        document.getElementById("page-wrapper").appendChild(fileNameArray[arrayCounter][0]);
-        fileNameArray[arrayCounter][0].appendChild(para);
+            document.getElementById("page-wrapper").appendChild(fileNameArray[arrayCounter][0]);
+            fileNameArray[arrayCounter][0].appendChild(para);
 
-        arrayCounter += 1;
+            arrayCounter += 1;
 
-        if (arrayCounter < fileNameArray.length) {
-            myFunction();
-        }
+            if (arrayCounter < fileNameArray.length) {
+                myFunction();
+            }
+        }, false);
     }
 
 </script>

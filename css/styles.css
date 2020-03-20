@@ -70,13 +70,13 @@ a {
 }
 
 .buttons {
-    vertical-align:top;
+    vertical-align: top;
     background-color: #FFFD82;
     margin: 2vh;
     height: 15vh;
     width: 15vh;
     border: none;
-     color: #2D3047;
+    color: #2D3047;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -86,15 +86,19 @@ a {
     z-index: 1000;
 }
 
-.Page-Wrapper{
+.Page-Wrapper {
     width: 100%;
     height: 100%;
-    
+
 }
 
 @keyframes mymove {
-  from {background-color: #1B998B}
-  to {background-color: #FFFD82}
+    from {
+        background-color: #1B998B
+    }
+
+    to {
+        background-color: #FFFD82
+    }
+
 }
-
-
