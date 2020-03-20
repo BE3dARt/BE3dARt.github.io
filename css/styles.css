@@ -1,13 +1,20 @@
+:root {
+    --background: #ACF7C1;
+    --text: #DDFFF7;
+    --buttons: #857C8D;
+    --header: #5C0029;
+    --buttons_active: #61304B;
+}
+
+
 html,
 body {
     margin: 0;
     height: 100%;
-}
-
-html {
-    font-family: Helvetica, Arial, sans-serif;
+    
     font-size: 100%;
-    background: #2D3047;
+    background: var(--background);
+    font-family: 'Oswald', sans-serif;
 }
 
 #box {
@@ -55,9 +62,9 @@ img {
     width: 100%;
     height: 10vh;
     margin-bottom: 2vh;
-    background-color: #FFFD82;
+    background-color: var(--header);
     border: none;
-    color: #2D3047;
+    color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -70,13 +77,14 @@ a {
 }
 
 .buttons {
+    font-family: 'Oswald', sans-serif;
     vertical-align: top;
-    background-color: #FFFD82;
+    background-color: var(--buttons);
     margin: 2vh;
     height: 15vh;
     width: 15vh;
     border: none;
-    color: #2D3047;
+    color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -94,11 +102,11 @@ a {
 
 @keyframes mymove {
     from {
-        background-color: #1B998B
+        background-color: #61304B
     }
 
     to {
-        background-color: #FFFD82
+        background-color: #857C8D
     }
 
 }

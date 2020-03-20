@@ -9,21 +9,23 @@
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="BE3dARt">
 
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+
     </script>
 
 </head>
 
 <body>
 
-
+    <div class="header">
+        <div>BE3dARt's Soundboard</div>
+    </div>
     <div class="Page-Wrapper" id="page-wrapper">
-
-        <div class="header">
-            <div>BE3dARt's Soundboard</div>
-        </div>
 
     </div>
 
@@ -104,63 +106,88 @@
         [0, "Who ahAre You?", "whoareyou.mp3", 0, 0],
         [0, "Why Aru Running? 2x", "whyareyourunning.mp3", 0, 0],
         [0, "Why You Cheff To Be Mad", "whyyouhefftobemad.mp3", 0, 0],
-        [0, "YEET", "yeet.mp3", 0, 0]
-        
+        [0, "YEET", "yeet.mp3", 0, 0],
+        [0, "Hello Darkness", "hellodarkness.mp3", 0, 0],
+        [0, "When You Try Your Best", "whenyoutryyourbest.mp3", 0, 0]
+
     ];
 
     document.addEventListener('DOMContentLoaded', function() {
-        myFunction();
+        loadMetaData(0);
     }, false);
 
+    function loadMetaData(counter) {
 
-    var arrayCounter = 0;
+        fileNameArray[counter][4] = document.createElement('audio');
+        fileNameArray[counter][4].src = "snd/" + fileNameArray[counter][2];
 
-    function myFunction() {
-
-        var tempArrayCounter = arrayCounter;
-        
-        var url = "snd/" + fileNameArray[tempArrayCounter][2];
-        
-        var au = document.createElement('audio');
-
-        fileNameArray[arrayCounter][0] = document.createElement("BUTTON");
-        fileNameArray[arrayCounter][0].id = arrayCounter.toString();
-        fileNameArray[arrayCounter][0].className = "buttons";
-
-        au.src = url;
-
-        au.addEventListener('loadedmetadata', function() {
-            var duration = Math.round(au.duration * 10) / 10;
-
-            var para = document.createElement("P");
-            var textus = fileNameArray[arrayCounter][1] + "\n\n" + duration + "s";
-            para.innerText = textus;
+        fileNameArray[counter][4].addEventListener('loadedmetadata', function() {
+            fileNameArray[counter][3] = fileNameArray[counter][4].duration;
 
 
-            fileNameArray[arrayCounter][0].addEventListener('mouseover', function() {
-
-                this.style.animation = "";
-
-            });
-
-            fileNameArray[arrayCounter][0].addEventListener('click', function() {
-
-                this.style.animation = "mymove 1s";
-
-                var urlTemp = url;
-                new Audio(urlTemp).play();
-            });
-
-
-            document.getElementById("page-wrapper").appendChild(fileNameArray[arrayCounter][0]);
-            fileNameArray[arrayCounter][0].appendChild(para);
-
-            arrayCounter += 1;
-
-            if (arrayCounter < fileNameArray.length) {
-                myFunction();
+            if (counter + 1 < fileNameArray.length) {
+                loadMetaData(counter + 1);
+            } else {
+                drawButtons(0);
             }
+
         }, false);
+
+    }
+
+    function drawButtons(counter) {
+
+        fileNameArray[counter][0] = document.createElement("BUTTON");
+        fileNameArray[counter][0].id = counter.toString();
+        fileNameArray[counter][0].className = "buttons";
+
+        var para = document.createElement("P");
+        var duration = Math.round(fileNameArray[counter][3] * 10) / 10;
+        para.innerText = fileNameArray[counter][1] + "\n\n" + duration + "s";
+
+        fileNameArray[counter][0].addEventListener('mouseover', function() {
+
+            this.style.animation = "";
+
+        });
+
+        switch (true) {
+            case (fileNameArray[counter][3] <= 1): {
+                break;
+            }
+
+            case (fileNameArray[counter][3] >= 1 && fileNameArray[counter][3] <= 2): {
+                break;
+            }
+
+            case (fileNameArray[counter][3] >= 2 && fileNameArray[counter][3] <= 5): {
+                break;
+            }
+
+            case (fileNameArray[counter][3] >= 5): {
+                break;
+            }
+
+        }
+
+        fileNameArray[counter][0].addEventListener('click', function() {
+
+            this.style.animation = "mymove 1s";
+            fileNameArray[counter][4].play();
+
+            if (fileNameArray[counter][4].paused) {
+                fileNameArray[counter][4].play();
+            } else {
+                fileNameArray[counter][4].currentTime = 0
+            }
+        });
+
+        document.getElementById("page-wrapper").appendChild(fileNameArray[counter][0]);
+        fileNameArray[counter][0].appendChild(para);
+
+        if (counter + 1 < fileNameArray.length) {
+            drawButtons(counter + 1);
+        }
     }
 
 </script>
