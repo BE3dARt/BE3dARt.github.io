@@ -24,8 +24,15 @@
 
     <div class="header">
         <div>BE3dARt's Soundboard</div>
+        <div>
+            <button class="button" id="button1"><i class="fa fa-exchange"></i> Sort by length</button>
+            <button class="button" id="button1"><i class="fa fa-exchange"></i> Sort alphabetically</button>
+            <input type="text" id="xPos" class="input" placeholder="Search...">
+        </div>
+
     </div>
     <div class="Page-Wrapper" id="page-wrapper">
+
 
     </div>
 
@@ -118,8 +125,35 @@
     // Fired when Website is loaded
     ///////////////////////////////////////////////////////////////////////////////////////////////
     document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("xPos").oninput = function() {
+            inputTrigger(this.value);
+        }
+
         drawOrderPerLengthDivider(0);
     }, false);
+
+    function inputTrigger(value) {
+        //document.getElementById("page-wrapper").style.visibility = 'hidden';  
+        //document.getElementById("page-wrapper").style.overflow = "hidden";
+
+        var counter = 0;
+
+        while (counter < fileNameArray.length) {
+            
+
+            if (fileNameArray[counter][1].toLowerCase().includes(value.toLowerCase()) == true) {
+
+                fileNameArray[counter][0].style.visibility = 'visible';
+                fileNameArray[counter][0].style.display = 'inline';
+            } else {
+                fileNameArray[counter][0].style.visibility = 'hidden';
+                fileNameArray[counter][0].style.display = 'none';
+            }
+            
+            counter += 1;
+        }
+
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Draw divider lines used when sorted depenend on length
@@ -133,7 +167,7 @@
 
         var paragraph = document.createElement("P");
         paragraph.className = "orderDividerText";
-        
+
         switch (counter) {
             case 0: {
                 paragraph.innerText = "Under 1 second";
@@ -156,7 +190,7 @@
             }
 
         }
-        
+
         var line = document.createElement("DIV");
         line.className = "orderDividerLengthLine";
 
