@@ -34,6 +34,8 @@
 <script>
     // <button class="buttons" id="button1"><i class="fa fa-exchange"></i> Change</button>
 
+    var orderPerLengthDivider = [0, 0, 0, 0];
+
     var fileNameArray = [
         [0, "Airhorn", "airhorn.mp3", 0, 0],
         [0, "2 Girls 1 Cup Intro", "2girls1cup.mp3", 0, 0],
@@ -112,10 +114,67 @@
 
     ];
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // Fired when Website is loaded
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     document.addEventListener('DOMContentLoaded', function() {
-        loadMetaData(0);
+        drawOrderPerLengthDivider(0);
     }, false);
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // Draw divider lines used when sorted depenend on length
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    function drawOrderPerLengthDivider(counter) {
+
+        var dividerID = "divider" + counter.toString();
+
+        orderPerLengthDivider[counter] = document.createElement("DIV");
+        orderPerLengthDivider[counter].id = dividerID;
+
+        var paragraph = document.createElement("P");
+        paragraph.className = "orderDividerText";
+        
+        switch (counter) {
+            case 0: {
+                paragraph.innerText = "Under 1 second";
+                break;
+            }
+
+            case 1: {
+                paragraph.innerText = "Under 2 second";
+                break;
+            }
+
+            case 2: {
+                paragraph.innerText = "Under 5 second";
+                break;
+            }
+
+            case 3: {
+                paragraph.innerText = "Over 5 second";
+                break;
+            }
+
+        }
+        
+        var line = document.createElement("DIV");
+        line.className = "orderDividerLengthLine";
+
+        document.getElementById("page-wrapper").appendChild(orderPerLengthDivider[counter]);
+        orderPerLengthDivider[counter].appendChild(line);
+        orderPerLengthDivider[counter].appendChild(paragraph);
+
+        if (counter + 1 < orderPerLengthDivider.length) {
+            drawOrderPerLengthDivider(counter + 1);
+        } else {
+            loadMetaData(0);
+        }
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // Loads Metatdata of Mp3 file
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     function loadMetaData(counter) {
 
         fileNameArray[counter][4] = document.createElement('audio');
@@ -135,6 +194,9 @@
 
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // Draw actual Buttons to play sounds
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     function drawButtons(counter) {
 
         fileNameArray[counter][0] = document.createElement("BUTTON");
@@ -151,25 +213,6 @@
 
         });
 
-        switch (true) {
-            case (fileNameArray[counter][3] <= 1): {
-                break;
-            }
-
-            case (fileNameArray[counter][3] >= 1 && fileNameArray[counter][3] <= 2): {
-                break;
-            }
-
-            case (fileNameArray[counter][3] >= 2 && fileNameArray[counter][3] <= 5): {
-                break;
-            }
-
-            case (fileNameArray[counter][3] >= 5): {
-                break;
-            }
-
-        }
-
         fileNameArray[counter][0].addEventListener('click', function() {
 
             this.style.animation = "mymove 1s";
@@ -182,8 +225,32 @@
             }
         });
 
-        document.getElementById("page-wrapper").appendChild(fileNameArray[counter][0]);
-        fileNameArray[counter][0].appendChild(para);
+        switch (true) {
+            case (fileNameArray[counter][3] <= 1): {
+                orderPerLengthDivider[0].appendChild(fileNameArray[counter][0]);
+                fileNameArray[counter][0].appendChild(para);
+                break;
+            }
+
+            case (fileNameArray[counter][3] >= 1 && fileNameArray[counter][3] <= 2): {
+                orderPerLengthDivider[1].appendChild(fileNameArray[counter][0]);
+                fileNameArray[counter][0].appendChild(para);
+                break;
+            }
+
+            case (fileNameArray[counter][3] >= 2 && fileNameArray[counter][3] <= 5): {
+                orderPerLengthDivider[2].appendChild(fileNameArray[counter][0]);
+                fileNameArray[counter][0].appendChild(para);
+                break;
+            }
+
+            case (fileNameArray[counter][3] >= 5): {
+                orderPerLengthDivider[3].appendChild(fileNameArray[counter][0]);
+                fileNameArray[counter][0].appendChild(para);
+                break;
+            }
+
+        }
 
         if (counter + 1 < fileNameArray.length) {
             drawButtons(counter + 1);
