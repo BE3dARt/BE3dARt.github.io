@@ -1,8 +1,8 @@
 :root {
-    --background: #ABFAA9;
-    --text: #254441;
-    --buttons: #EF3054;
-    --header: #FF6F59;
+    --background: #111c24;
+    --text: #111c24;
+    --buttons: #ffffff;
+    --header: #8a8c8d;
     --buttons_active: #61304B;
 }
 
@@ -57,11 +57,13 @@ body {
     margin: 2rem;
     height: 15rem;
     width: 15rem;
-    border: none;
+    border: 0.5rem;
+    border-style: solid;
     color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-color: #ff9a4e;
     font-size: 2rem;
     cursor: pointer;
     border-radius: 0.4rem;
