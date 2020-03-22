@@ -83,12 +83,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Fired when Website is loaded
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById("xPos").oninput = function() {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("xPos").oninput = function () {
             inputTrigger(this.value);
         }
-        
-        
+
+
 
         drawOrderPerLengthDivider(0);
     }, false);
@@ -98,20 +98,20 @@
         //document.getElementById("page-wrapper").style.overflow = "hidden";
 
         var counter = 0;
-        
-        
+
+
         if (value) {
             for (var i = 1; i <= orderPerLengthDivider.length; i++) {
-                orderPerLengthDivider[i-1].style.visibility = 'hidden';
-                orderPerLengthDivider[i-1].style.display = 'inline';
+                orderPerLengthDivider[i - 1].style.visibility = 'hidden';
+                orderPerLengthDivider[i - 1].style.display = 'inline';
             }
         } else {
             for (var i = 1; i <= orderPerLengthDivider.length; i++) {
-                orderPerLengthDivider[i-1].style.visibility = 'visible';
-                orderPerLengthDivider[i-1].style.display = 'none';
+                orderPerLengthDivider[i - 1].style.visibility = 'visible';
+                orderPerLengthDivider[i - 1].style.display = 'none';
             }
         }
-        
+
         while (counter < fileNameArray.length) {
 
 
@@ -179,33 +179,37 @@
 
     }
 
+    function updateEle(counter) {
+
+        var percentage = String((100 / fileNameArray.length) * (counter + 1)) + "%";
+        document.getElementById("bar").style.width = percentage;
+        
+        loadMetaData(counter)
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Loads Metatdata of Mp3 file
     ///////////////////////////////////////////////////////////////////////////////////////////////
     function loadMetaData(counter) {
         
-        
-
         fileNameArray[counter][4] = document.createElement('audio');
         fileNameArray[counter][4].src = "snd/" + fileNameArray[counter][2];
 
-        fileNameArray[counter][4].addEventListener('loadedmetadata', function() {
+        fileNameArray[counter][4].addEventListener('loadedmetadata', function () {
             fileNameArray[counter][3] = fileNameArray[counter][4].duration;
 
             if (counter + 1 < fileNameArray.length) {
-                var percentage = (100/fileNameArray.length)*(counter+1);
-                document.getElementById("bar").style.width = percentage;
-                loadMetaData(counter + 1);
+                updateEle(counter + 1);
             } else {
-            
+
                 document.getElementById("loading_i").style.visibility = "hidden";
                 document.getElementById("loading_i").style.display = "none";
-                
+
                 document.getElementById("header").style.visibility = "visible";
                 document.getElementById("header").style.display = "block";
                 document.getElementById("page-wrapper").style.visibility = "visible";
                 document.getElementById("page-wrapper").style.display = "block";
-        
+
                 drawButtons(0);
             }
 
@@ -226,13 +230,13 @@
         var duration = Math.round(fileNameArray[counter][3] * 10) / 10;
         para.innerText = fileNameArray[counter][1] + "\n\n" + duration + "s";
 
-        fileNameArray[counter][0].addEventListener('mouseover', function() {
+        fileNameArray[counter][0].addEventListener('mouseover', function () {
 
             this.style.animation = "";
 
         });
 
-        fileNameArray[counter][0].addEventListener('click', function() {
+        fileNameArray[counter][0].addEventListener('click', function () {
 
             this.style.animation = "mymove 1s";
             fileNameArray[counter][4].play();
