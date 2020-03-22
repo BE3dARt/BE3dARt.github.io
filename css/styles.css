@@ -63,7 +63,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-color: #ff9a4e;
+    border-color: #ff630e;
     font-size: 2rem;
     cursor: pointer;
     border-radius: 0.4rem;
@@ -98,11 +98,11 @@ body {
 
 @keyframes mymove {
     from {
-        background-color: #254441
+        background-color: #ff630e
     }
 
     to {
-        background-color: #EF3054
+        background-color: #ffffff
     }
 
 }
@@ -133,7 +133,7 @@ body {
     display: flex;
     align-items: center;
     border: 2rem;
-    border-color: #ff9a4e;
+    border-color: #ff630e;
     border-style: solid;
 
 }
