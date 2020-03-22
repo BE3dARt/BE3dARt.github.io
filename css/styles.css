@@ -11,9 +11,10 @@
     font-family: 'Oswald', sans-serif;
     vertical-align: top;
     background-color: var(--buttons);
-    margin: 1vh;
     height: 7vh;
-    width: 30%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: 100%;
     border: none;
     color: var(--text);
     text-align: center;
@@ -44,7 +45,6 @@ body {
     text-align: center;
     text-decoration: none;
     display: block;
-    font-size: 6vh;
     visibility: hidden;
     display: none;
     overflow: hidden;
@@ -157,6 +157,8 @@ body {
 .slider {
     -webkit-appearance: none;
     width: 100%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
     height: 2vh;
     background: var(--text);
     outline: none;

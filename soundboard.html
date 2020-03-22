@@ -18,14 +18,19 @@
 <body id="body">
 
     <div class="Header" id="header">
-        <div id="webtitle">The Master's Soundboard</div>
-        <div>
-            <input type="text" id="xPos" class="standartBox" placeholder="Search..." style="background-color: white; color: black">
-            <button id="stopPlayingEverything" class="standartBox">Stop Everything</button>
-            <button id="stopPlayingLast" class="standartBox">Stop Last</button>
-        </div>
+        <div id="webtitle" style="font-size: 6vh">-The Master's Soundboard-</div>
+        
+        <div id="information" style="font-size: 2vh; margin-bottom: 2vh; margin-top: 2vh;  display: none;">Howdy! Welcome to BE3dARt's Soundboard "The Master's Soundboard"!<br><br>To play a sound, simply press on the corresponding button.<br> They are sorted and grouped by their length.<br> To search for a specific button, enter into the dialog "Search...".<br> If you desire to stop a sound from playing, either press "Stop Everything" or press "Stop Last".<br>To adjust the volume, simply pull the slider to the left to make it quieter. Pull it to the right to make it louder.<br><br>Have fun! Greetings BE3dARt</div>
+        
+        <div id="informationToggle" style="font-size: 2vh; margin-bottom: 4vh;">Press the title for more information</div>
 
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <input type="text" id="xPos" class="standartBox" placeholder="Search..." style="background-color: white; color: black">
+        
+        <button id="stopPlayingEverything" class="standartBox">Stop Everything</button>
+        <button id="stopPlayingLast" class="standartBox">Stop Last</button>
+        
+        <input type="range" min="1" max="100" value="100" class="slider" id="myRange">
+
     </div>
 
 

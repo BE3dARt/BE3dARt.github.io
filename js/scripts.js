@@ -80,13 +80,25 @@
 
     ];
 
-    var soundLevel = 0;
+    var soundLevel = 100;
     var lastPlayed = 0;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Fired when Website is loaded
     ///////////////////////////////////////////////////////////////////////////////////////////////
     document.addEventListener('DOMContentLoaded', function () {
+
+        document.getElementById("webtitle").addEventListener('click', function () {
+            var x = document.getElementById("information");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+
+
+        });
+
         document.getElementById("xPos").oninput = function () {
             inputTrigger(this.value);
         }
