@@ -85,6 +85,11 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Fired when Website is loaded
     ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    var root = document.querySelector(":root");
+
+    root.style.fontSize = String(window.screen.height / 84.7) + "px";
+
     document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById("webtitle").addEventListener('click', function () {

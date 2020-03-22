@@ -11,18 +11,18 @@
     font-family: 'Oswald', sans-serif;
     vertical-align: top;
     background-color: var(--buttons);
-    height: 7em;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    height: 7rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     width: 100%;
     border: none;
     color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 2em;
+    font-size: 2rem;
     cursor: pointer;
-    border-radius: 0.4em;
+    border-radius: 0.4rem;
     z-index: 1000;
 
 }
@@ -31,7 +31,7 @@ html,
 body {
     margin: 0;
     height: 100%;
-    font-size: 100%;
+    font-size: 1px;
     background: var(--background);
     font-family: 'Oswald', sans-serif;
 }
