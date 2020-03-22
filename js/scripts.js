@@ -99,8 +99,6 @@
             } else {
                 x.style.display = "none";
             }
-
-
         });
 
         document.getElementById("xPos").oninput = function () {
@@ -109,6 +107,10 @@
 
         document.getElementById("myRange").oninput = function () {
             soundLevel = this.value;
+        }
+        
+        document.getElementById("UIScale").oninput = function () {
+            root.style.fontSize = String(((window.screen.height / 84.7)*((this.value/100)+0.5))) + "px";
         }
 
         document.getElementById("stopPlayingLast").addEventListener("click", function () {
