@@ -81,6 +81,7 @@
     ];
 
     var soundLevel = 0;
+    var lastPlayed = 0;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Fired when Website is loaded
@@ -93,6 +94,24 @@
         document.getElementById("myRange").oninput = function () {
             soundLevel = this.value;
         }
+
+        document.getElementById("stopPlayingLast").addEventListener("click", function () {
+            lastPlayed.currentTime = 0;
+            lastPlayed.pause();
+        });
+
+        document.getElementById("stopPlayingEverything").addEventListener("click", function () {
+
+            var counter = 0;
+
+            while (counter < fileNameArray.length) {
+                fileNameArray[counter][4].currentTime = 0;
+                fileNameArray[counter][4].pause();
+
+                counter += 1;
+
+            }
+        });
 
         drawOrderPerLengthDivider(0);
     }, false);
@@ -261,15 +280,17 @@
 
         fileNameArray[counter][0].addEventListener('click', function () {
 
-            fileNameArray[counter][4].volume = soundLevel/100;
-            
+            fileNameArray[counter][4].volume = soundLevel / 100;
+            lastPlayed = fileNameArray[counter][4];
+
             this.style.animation = "mymove 1s";
-            fileNameArray[counter][4].play();
+
 
             if (fileNameArray[counter][4].paused) {
                 fileNameArray[counter][4].play();
             } else {
-                fileNameArray[counter][4].currentTime = 0
+                fileNameArray[counter][4].currentTime = 0;
+                fileNameArray[counter][4].play();
             }
         });
 
