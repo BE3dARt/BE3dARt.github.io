@@ -80,6 +80,8 @@
 
     ];
 
+    var soundLevel = 0;
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Fired when Website is loaded
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,7 +90,9 @@
             inputTrigger(this.value);
         }
 
-
+        document.getElementById("myRange").oninput = function () {
+            soundLevel = this.value;
+        }
 
         drawOrderPerLengthDivider(0);
     }, false);
@@ -257,6 +261,8 @@
 
         fileNameArray[counter][0].addEventListener('click', function () {
 
+            fileNameArray[counter][4].volume = soundLevel/100;
+            
             this.style.animation = "mymove 1s";
             fileNameArray[counter][4].play();
 

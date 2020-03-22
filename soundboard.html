@@ -20,19 +20,24 @@
     <div class="Header" id="header">
         <div id="webtitle">The Master's Soundboard</div>
         <div>
-            <input type="text" id="xPos" class="input" placeholder="Search...">
+            <input type="text" id="xPos" class="standartBox" placeholder="Search..." style="background-color: white; color: black">
+            <button id="stopPlayingEverything" class="standartBox">Stop Everything</button>
+            <button id="stopPlayingLast" class="standartBox">Stop Last</button>
         </div>
 
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
     </div>
 
+
+
     <div class="loading_c" id="loading_i">
-    
+
         <div class="Bar" id="bar">
-            
+
             <p class="bar_child"> Loading Engine...</p>
-       
+
         </div>
-    
+
     </div>
     <div class="Page-Wrapper" id="page-wrapper">
     </div>

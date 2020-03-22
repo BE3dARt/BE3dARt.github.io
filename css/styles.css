@@ -1,81 +1,53 @@
 :root {
-    --background: #ACF7C1;
-    --text: #DDFFF7;
-    --buttons: #857C8D;
-    --header: #5C0029;
+    --background: #ABFAA9;
+    --text: #254441;
+    --buttons: #EF3054;
+    --header: #FF6F59;
     --buttons_active: #61304B;
 }
 
 
-html,
-body {
-    margin: 0;
-    height: 100%;
-
-    font-size: 100%;
-    background: var(--background);
+.standartBox {
     font-family: 'Oswald', sans-serif;
-}
-
-#box {
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-
-h1 {
-    margin-top: 0;
-}
-
-img {
-    max-width: 100%;
-}
-
-#fileDisplayArea {
-    margin-top: 2em;
-    width: 100%;
-    overflow-x: auto;
-}
-
-.row {
-    display: flex;
+    vertical-align: top;
+    background-color: var(--buttons);
     margin: 1vh;
-}
-
-.column {
-    margin: 0.2vh;
-    flex: 50%;
-}
-
-.container {
-    width: 80%;
-    min-height: 400px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.font-c-light {
-    color: #aaa;
-}
-
-.Header,
-.footer {
-    width: 100%;
-    min-height: 10vh;
-    margin-bottom: 2vh;
-    background-color: var(--header);
+    height: 7vh;
+    width: 30%;
     border: none;
     color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-size: 2vh;
+    cursor: pointer;
+    border-radius: 0.4vh;
+    z-index: 1000;
+
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-size: 100%;
+    background: var(--background);
+    font-family: 'Oswald', sans-serif;
+}
+
+.Header {
+    width: 100%;
+    min-height: 10vh;
+    background-color: var(--header);
+    border: none;
+    color: var(--text);
+    text-align: center;
+    text-decoration: none;
+    display: block;
     font-size: 6vh;
     visibility: hidden;
     display: none;
-}
-
-a {
-    text-decoration: none;
-    color: rgba(230, 0, 0, 1)
+    overflow: hidden;
 }
 
 .buttons {
@@ -114,23 +86,6 @@ a {
     z-index: 1000;
 }
 
-.input {
-    font-family: 'Oswald', sans-serif;
-    vertical-align: top;
-    width: 15vh;
-    min-height: 8vh;
-    margin: 2vh;
-    border: none;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 2vh;
-    cursor: pointer;
-    border-radius: 0.4vh;
-    z-index: 1000
-}
-
 .Page-Wrapper {
     width: 100%;
     height: 100%;
@@ -141,11 +96,11 @@ a {
 
 @keyframes mymove {
     from {
-        background-color: #61304B
+        background-color: #254441
     }
 
     to {
-        background-color: #857C8D
+        background-color: #EF3054
     }
 
 }
@@ -197,4 +152,30 @@ a {
     background-color: var(--text);
     font-size: 4vh;
     margin: 1vh;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2vh;
+    background: var(--text);
+    outline: none;
+    opacity: 1;
+}
+
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8vh;
+    height: 4vh;
+    background: var(--buttons);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 8vh;
+    height: 4vh;
+    background: var(--buttons);
+    cursor: pointer;
 }
