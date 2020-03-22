@@ -29,6 +29,7 @@
 
 html,
 body {
+    touch-action: none;
     margin: 0;
     height: 100%;
     font-size: 100%;
