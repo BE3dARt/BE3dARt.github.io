@@ -183,6 +183,8 @@
     // Loads Metatdata of Mp3 file
     ///////////////////////////////////////////////////////////////////////////////////////////////
     function loadMetaData(counter) {
+        
+        
 
         fileNameArray[counter][4] = document.createElement('audio');
         fileNameArray[counter][4].src = "snd/" + fileNameArray[counter][2];
@@ -190,12 +192,12 @@
         fileNameArray[counter][4].addEventListener('loadedmetadata', function() {
             fileNameArray[counter][3] = fileNameArray[counter][4].duration;
 
-
             if (counter + 1 < fileNameArray.length) {
+                var percentage = (100/fileNameArray.length)*(counter+1);
+                document.getElementById("bar").style.width = percentage;
                 loadMetaData(counter + 1);
             } else {
             
-                
                 document.getElementById("loading_i").style.visibility = "hidden";
                 document.getElementById("loading_i").style.display = "none";
                 

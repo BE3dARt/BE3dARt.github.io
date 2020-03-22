@@ -181,10 +181,10 @@ a {
 
 }
 
-.bar {
+.Bar {
     align-items: stretch;
     height: 100%;
-    width: 90%;
+    width: 0%;
     background-color: var(--text);
     font-size: 4vh;
     overflow: hidden;
