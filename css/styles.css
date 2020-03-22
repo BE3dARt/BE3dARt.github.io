@@ -11,18 +11,18 @@
     font-family: 'Oswald', sans-serif;
     vertical-align: top;
     background-color: var(--buttons);
-    height: 7vh;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    height: 7rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     width: 100%;
     border: none;
     color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 2vh;
+    font-size: 2rem;
     cursor: pointer;
-    border-radius: 0.4vh;
+    border-radius: 0.4rem;
     z-index: 1000;
 
 }
