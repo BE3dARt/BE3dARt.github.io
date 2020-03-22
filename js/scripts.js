@@ -93,38 +93,56 @@
         drawOrderPerLengthDivider(0);
     }, false);
 
+
     function inputTrigger(value) {
         //document.getElementById("page-wrapper").style.visibility = 'hidden';  
         //document.getElementById("page-wrapper").style.overflow = "hidden";
 
         var counter = 0;
-
-
-        if (value) {
-            for (var i = 1; i <= orderPerLengthDivider.length; i++) {
-                orderPerLengthDivider[i - 1].style.visibility = 'hidden';
-                orderPerLengthDivider[i - 1].style.display = 'inline';
-            }
-        } else {
-            for (var i = 1; i <= orderPerLengthDivider.length; i++) {
-                orderPerLengthDivider[i - 1].style.visibility = 'visible';
-                orderPerLengthDivider[i - 1].style.display = 'none';
-            }
-        }
+        var visibleCounter = 0;
 
         while (counter < fileNameArray.length) {
-
 
             if (fileNameArray[counter][1].toLowerCase().includes(value.toLowerCase()) == true) {
 
                 fileNameArray[counter][0].style.visibility = 'visible';
-                fileNameArray[counter][0].style.display = 'inline';
+                fileNameArray[counter][0].style.display = 'inline-block';
+                visibleCounter += 1;
+
             } else {
                 fileNameArray[counter][0].style.visibility = 'hidden';
                 fileNameArray[counter][0].style.display = 'none';
             }
 
             counter += 1;
+        }
+
+        var x = document.getElementsByClassName("orderDividerLengthLine");
+        var z = document.getElementsByClassName("orderDividerText");
+        var l = document.getElementsByClassName("orderPerLengthDivider");
+
+        if (visibleCounter == fileNameArray.length) {
+
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.visibility = 'visible';
+                x[i].style.display = 'block';
+                z[i].style.visibility = 'visible';
+                z[i].style.display = 'block';
+                l[i].style.display = 'block';
+            }
+
+
+        } else {
+
+
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.visibility = 'hidden';
+                x[i].style.display = 'none';
+                z[i].style.visibility = 'hidden';
+                z[i].style.display = 'none';
+                l[i].style.display = 'inline-block';
+            }
+
         }
     }
 
@@ -137,6 +155,7 @@
 
         orderPerLengthDivider[counter] = document.createElement("DIV");
         orderPerLengthDivider[counter].id = dividerID;
+        orderPerLengthDivider[counter].className = "orderPerLengthDivider";
 
         var paragraph = document.createElement("P");
         paragraph.className = "orderDividerText";
@@ -183,7 +202,7 @@
 
         var percentage = String((100 / fileNameArray.length) * (counter + 1)) + "%";
         document.getElementById("bar").style.width = percentage;
-        
+
         loadMetaData(counter)
     }
 
@@ -191,7 +210,7 @@
     // Loads Metatdata of Mp3 file
     ///////////////////////////////////////////////////////////////////////////////////////////////
     function loadMetaData(counter) {
-        
+
         fileNameArray[counter][4] = document.createElement('audio');
         fileNameArray[counter][4].src = "snd/" + fileNameArray[counter][2];
 
