@@ -38,7 +38,7 @@ body {
 
 .Header {
     width: 100%;
-    min-height: 10vh;
+    min-height: 10rem;
     background-color: var(--header);
     border: none;
     color: var(--text);
@@ -54,17 +54,17 @@ body {
     font-family: 'Oswald', sans-serif;
     vertical-align: top;
     background-color: var(--buttons);
-    margin: 2vh;
-    height: 15vh;
-    width: 15vh;
+    margin: 2rem;
+    height: 15rem;
+    width: 15rem;
     border: none;
     color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 2vh;
+    font-size: 2rem;
     cursor: pointer;
-    border-radius: 0.4vh;
+    border-radius: 0.4rem;
     z-index: 1000;
 }
 
@@ -72,17 +72,17 @@ body {
     font-family: 'Oswald', sans-serif;
     vertical-align: top;
     background-color: var(--buttons);
-    width: 15vh;
-    min-height: 8vh;
-    margin: 2vh;
+    width: 15rem;
+    min-height: 8rem;
+    margin: 2rem;
     border: none;
     color: var(--text);
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 2vh;
+    font-size: 2rem;
     cursor: pointer;
-    border-radius: 0.4vh;
+    border-radius: 0.4rem;
     z-index: 1000;
 }
 
@@ -107,7 +107,7 @@ body {
 
 .orderDividerLengthLine {
     width: 100%;
-    height: 1vh;
+    height: 1rem;
     background-color: var(--header);
 
 }
@@ -115,8 +115,8 @@ body {
 .orderDividerText {
     font-family: 'Oswald', sans-serif;
     color: var(--header);
-    font-size: 2vh;
-    margin-left: 2vh;
+    font-size: 2rem;
+    margin-left: 2rem;
 }
 
 .loading_c {
@@ -130,7 +130,7 @@ body {
     height: 10%;
     display: flex;
     align-items: center;
-    border: 2vh;
+    border: 2rem;
     border-color: var(--header);
     border-style: solid;
 
@@ -141,7 +141,7 @@ body {
     height: 100%;
     width: 0%;
     background-color: var(--text);
-    font-size: 4vh;
+    font-size: 4rem;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -150,16 +150,16 @@ body {
 .bar_child {
     align-items: stretch;
     background-color: var(--text);
-    font-size: 4vh;
-    margin: 1vh;
+    font-size: 4rem;
+    margin: 1rem;
 }
 
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    height: 2vh;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 2rem;
     background: var(--text);
     outline: none;
     opacity: 1;
@@ -169,15 +169,15 @@ body {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 8vh;
-    height: 4vh;
+    width: 8rem;
+    height: 4rem;
     background: var(--buttons);
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 8vh;
-    height: 4vh;
+    width: 8rem;
+    height: 4rem;
     background: var(--buttons);
     cursor: pointer;
 }
