@@ -133,7 +133,7 @@ body {
     display: flex;
     align-items: center;
     border: 2rem;
-    border-color: var(--header);
+    border-color: #ff9a4e;
     border-style: solid;
 
 }
@@ -142,7 +142,7 @@ body {
     align-items: stretch;
     height: 100%;
     width: 0%;
-    background-color: var(--text);
+    background-color: var(--buttons);
     font-size: 4rem;
     overflow: hidden;
     display: flex;
@@ -151,7 +151,6 @@ body {
 
 .bar_child {
     align-items: stretch;
-    background-color: var(--text);
     font-size: 4rem;
     margin: 1rem;
 }
